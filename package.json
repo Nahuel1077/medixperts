@@ -19,5 +19,20 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tailwindcss": "^4"
-  }
+  },
+  "description": "plataforma de cursos de interpretación",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nahuel1077/plataforma-de-cursos.git"
+  },
+  "keywords": [
+    "interpretación"
+  ],
+  "author": "Nahuel Ezequiel Henríquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nahuel1077/plataforma-de-cursos/issues"
+  },
+  "homepage": "https://github.com/Nahuel1077/plataforma-de-cursos#readme"
 }
