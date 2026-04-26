@@ -28,16 +28,6 @@ export default function SignUp() {
       return;
     }
 
-/*     if (data.user) {
-      await supabase.from('profiles').insert([
-        {
-          id: data.user.id,
-          role: 'user'
-        }
-      ]);
-
-      router.push('/dashboard');
-    } */
    if (data.user) {
     const { error: insertError } = await supabase
       .from('profiles')
@@ -55,7 +45,8 @@ export default function SignUp() {
     }
 
     setLoading(false);
-  };
+    return;
+  }};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -96,5 +87,4 @@ export default function SignUp() {
       </form>
     </div>
   );
-}
-}
+};
