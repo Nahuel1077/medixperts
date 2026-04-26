@@ -3,8 +3,7 @@
 
 
 body {
-
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .button{
@@ -13,14 +12,30 @@ body {
   width: 90px;
   height: 35px;
   font-weight: 500;
+  box-shadow:  black 0px 1px 2px 1px;
+}
+
+.button:hover{
+  box-shadow: black 0px 1px 0px 1px;;
 }
 
 .callToAction{
   background-color: rgb(207, 207, 207);
-  color: black
+  color: black;
+  box-shadow:  black 0px 1px 2px 1px;
 }
 
 .callToAction2{
-  background-color: black;
-  color: white
+  background-color: #2563EB;
+  color: white;
+  box-shadow:  black 0px 1px 2px 1px;
+}
+
+.callToAction2:hover{
+  box-shadow: black 0px 1px 0px 1px;;
+}
+
+h2{
+  font-size: 1rem;
+  font-weight: 600;
 }
