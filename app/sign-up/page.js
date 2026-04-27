@@ -43,6 +43,7 @@ export default function SignUp() {
     if (insertError) {
       console.log(insertError);
     }
+    router.push("/log-in");
 
     setLoading(false);
     return;

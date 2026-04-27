@@ -21,7 +21,7 @@ export default function Home() {
         <div className="absolute flex flex-col text-center items-center">
           <h1 className="text-4xl font-bold mt-8">Turn into an expert</h1>
           <p className="text-lg mt-4">A practical training to help you become a remote medical interpreter</p>
-          <button className="callToAction2 border-[black_1px] p-2 w-[150px] h-[58px] text-2xl rounded-md mt-6 shadow-[black_0px_1px_3px_1px]">Get started</button>
+          <button className="callToAction2 border-[black_1px] p-2 w-[150px] h-[58px] text-2xl rounded-md mt-6 shadow-[black_0px_1px_3px_1px]"><Link href="/https://forms.gle/mc1BrCCgQN4gDLtr8">Get started</Link></button>
         </div>
       </div>
       <div className="flex flex-col items-center w-full sm:p-8">
