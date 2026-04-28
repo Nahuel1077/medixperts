@@ -10,37 +10,50 @@ export default function AdminPage() {
 
     useEffect(() => {
     const checkAdmin = async () => {
-      // 1. Obtener usuario logueado
-      const { data: userData } = await supabase.auth.getUser();
+    const { data: userData } = await supabase.auth.getUser();
 
-      if (!userData.user) {
-        router.push('/login');
-        return;
-      }
+    if (!userData.user) {
+      router.push('/login');
+      return;
+    }
 
-      // 2. Buscar perfil en DB
-      const { data: profile, error } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', userData.user.id)
-        .single();
+    const { data: profile, error } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', userData.user.id)
+      .single();
 
-      if (error || !profile) {
-        router.push('/');
-        return;
-      }
+    console.log(profile, error);
 
-      // 3. Validar rol
-      if (profile.role !== 'admin') {
-        router.push('/');
-      } else {
-        setIsAdmin(true);
-      }
-    };
+    const getUsers = async () => {
+    const { data, error } = await supabase
+    .from('profiles')
+    .select('*');
     
-    checkAdmin();
-  },[]);
+      console.log("DATA:", data);
+  console.log("ERROR:", error);
+
+  setUsers(data || []);
+  };
+
+    if (!profile) {
+      router.push('/');
+      return;
+    }
+
+    if (profile.role !== 'admin') {
+      router.push('/');
+    } else {
+      setIsAdmin(true);
+      getUsers(); 
+    }
+  };
+
+  checkAdmin();
   
+  
+}, []);  
+
   if (isAdmin === null) return <p>Checking permissions...</p>;
   
   const getUsers = async () => {
@@ -77,9 +90,6 @@ export default function AdminPage() {
 
   getUsers();
   };
-
-
-  getUsers();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-100">

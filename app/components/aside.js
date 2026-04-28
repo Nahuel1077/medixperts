@@ -2,10 +2,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabaseClient';
 
 export default function Aside(){
 
     const [menuOpen, setMenuOpen] = useState(false);
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.push('/log-in');
+    };
 
     return(
         <div className="w-full sm:w-[250px]">
@@ -17,6 +25,7 @@ export default function Aside(){
                                 <Link href="/information" className="text-white font-semibold">Information</Link>
                                 <Link href="/" className="text-white font-semibold">Support</Link>
                             </ul>
+                            <button className="button callToAction2 absolute top-[90%]" onClick={handleLogout}>Log out</button>
                         </aside>
                         <nav className="flex flex-row w-full h-[100px] items-center justify-between p-6 border-b-gray-500 border-[1px] shadow-xs shadow-black bg-linear-to-r from-[#2563EB] to-white z-50 sm:hidden">
                                   <Image
