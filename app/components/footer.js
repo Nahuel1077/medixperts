@@ -3,7 +3,7 @@ import Image from "next/image"
 export default function Footer() {
 
     return (
-        <footer className="flex flex-col sm:flex-row justify-around w-full sm:p-12 pt-14 pb-14 sm:m-0 gap-10 sm:gap-0 items-center text-white bg-[#2564EB]">
+        <footer className="flex flex-col sm:flex-row justify-around w-full sm:p-12 pt-14 pb-14 sm:m-0 gap-10 sm:gap-0 items-center text-white bg-linear-to-r from-[#2563EB] to-black border-t-black border-t-[1px] shadow-[black_0px_1px_3px_1px]">
             <div className="flex flex-col items-start">
                 <Image
                 width={200}
