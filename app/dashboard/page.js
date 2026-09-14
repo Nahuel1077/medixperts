@@ -99,7 +99,7 @@ export default function Dashboard() {
             </div>
             {completed === 12 && (
               <Link
-                href="/test"
+                href="/material/test"
                 className="hidden md:block fixed bottom-6 right-6 z-50 bg-yellow-500 hover:bg-yellow-400 text-white font-bold px-6 py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
               >
                 Take Final Test →
