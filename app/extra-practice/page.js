@@ -1,4 +1,4 @@
-/* 'use client'
+'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,7 +11,7 @@ import { useUserInfo } from "../hooks/useUserInfo";
 const montserrat = Montserrat({ subsets: ['latin'] });
 
 export default function ExtraPractice() {
-    const { myInfo, loadingInfo } = useUserInfo();
+    /* const { myInfo, loadingInfo } = useUserInfo();
     const [counter, setCounter] = useState(0);
     const { user, loading } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
@@ -68,5 +68,8 @@ export default function ExtraPractice() {
             </div>
         </div>
     </div>
-    )
-} */
+    ) */
+   return(
+    <main className="flex min-h-screen items-center justify-center"> <div className="text-center"> <h1 className="text-3xl font-bold"> Extra Practice </h1> <p className="mt-4 text-gray-500"> This section is currently under development. </p> </div> </main>
+   )
+}
