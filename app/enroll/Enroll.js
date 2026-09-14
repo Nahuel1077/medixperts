@@ -47,7 +47,7 @@ export default function Enroll() {
             setLoading(true);
 
             const response = await fetch(
-                "http://localhost:3001/api/payments/create-preference",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/payments/create-preference`,
                 {
                     method: "POST",
                     headers: {
@@ -90,7 +90,7 @@ export default function Enroll() {
         try {
 
             const response = await fetch(
-                "http://localhost:3001/api/payments/process-payment",
+                `${process.env.NEXT_PUBLIC_API_URL}/api/payments/process-payment`,
                 {
                     method: "POST",
                     headers: {

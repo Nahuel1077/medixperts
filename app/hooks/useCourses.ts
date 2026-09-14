@@ -15,7 +15,7 @@ export function useCourses() {
       try {
         const token = localStorage.getItem('token');
 
-        const res = await fetch('http://localhost:3001/api/courses', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

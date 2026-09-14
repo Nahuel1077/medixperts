@@ -16,7 +16,7 @@ export default function AdminPage() {
     const getUser = async () => {
       const token = localStorage.getItem('token')
 
-      const res = await fetch('http://localhost:3001/api/auth/me', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ export default function AdminPage() {
     const checkAdmin = async () => {
       const token = localStorage.getItem('token')
 
-      const res = await fetch('http://localhost:3001/api/auth/admin', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/admin`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -62,7 +62,7 @@ export default function AdminPage() {
       const getUsers = async () => {
         const token = localStorage.getItem('token')
     
-        const res = await fetch('http://localhost:3001/api/auth/users', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -76,7 +76,7 @@ export default function AdminPage() {
       
        const getMembership = async () => {
          const token = localStorage.getItem('token')
-         const res = await fetch('http://localhost:3001/api/admin/memberships', {
+         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/memberships`, {
            headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -92,7 +92,7 @@ export default function AdminPage() {
   
   const getUsers = async () => {
     const token = localStorage.getItem('token')
-    const res = await fetch('http://localhost:3001/api/auth/users', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/users`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -103,7 +103,7 @@ export default function AdminPage() {
 
   const getMembership = async () => {
          const token = localStorage.getItem('token')
-         const res = await fetch('http://localhost:3001/api/admin/memberships', {
+         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/memberships`, {
            headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -118,7 +118,7 @@ export default function AdminPage() {
   const token = localStorage.getItem('token')
 
   try {
-    const res = await fetch(`http://localhost:3001/api/admin/users/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
@@ -146,7 +146,7 @@ export default function AdminPage() {
 
   try {
     const res = await fetch(
-      `http://localhost:3001/api/admin/toggle/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/admin/toggle/${id}`,
       {
         method: 'PUT',
         headers: {
@@ -173,7 +173,7 @@ export default function AdminPage() {
   const token = localStorage.getItem('token')
     
     try {
-    const res = await fetch(`http://localhost:3001/api/admin/extend/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/extend/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -41,7 +41,7 @@ export default function Class({ children, lessonData }) {
                 const token = localStorage.getItem('token');
 
                 const res = await fetch(
-                    'http://localhost:3001/api/courses',
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/courses`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ export default function Class({ children, lessonData }) {
             const token = localStorage.getItem('token');
 
             await fetch(
-                'http://localhost:3001/api/courses/progress',
+                `${process.env.NEXT_PUBLIC_API_URL}/api/courses/progress`,
                 {
                     method: 'PUT',
                     headers: {

@@ -23,7 +23,7 @@ export default function LogIn() {
     try {
 
         const res = await fetch(
-            'http://localhost:3001/api/auth/login',
+            `${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`,
             {
                 method: 'POST',
                 headers: {

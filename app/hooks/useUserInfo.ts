@@ -12,7 +12,7 @@ export function useUserInfo() {
         const token = localStorage.getItem('token');
 
         const res = await fetch(
-          'http://localhost:3001/api/auth/info',
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/info`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

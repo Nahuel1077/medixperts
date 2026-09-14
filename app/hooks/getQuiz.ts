@@ -16,7 +16,7 @@ export function GetQuiz() {
       const token = localStorage.getItem('token');
 
       const res = await fetch(
-        'http://localhost:3001/api/courses/quiz-attempts',
+        `${process.env.NEXT_PUBLIC_API_URL}/api/courses/quiz-attempts`,
         {
           method: 'GET',
           headers: {

@@ -15,7 +15,7 @@ export function useQuizAttempt() {
     try {
       const token = localStorage.getItem('token');
       
-      const res = await fetch('http://localhost:3001/api/courses/quiz-attempt', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses/quiz-attempt`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
