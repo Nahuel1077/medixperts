@@ -1,0 +1,180 @@
+import Presentation from '../../../../components/Presentation';
+import Paragraph from '../../../../components/Paragraph';
+import Title from '../../../../components/Title';
+import Grid from '../../../../components/Grid';
+
+<Title
+title="1. Understanding Medication Labels"
+p="Medication labels provide essential information about how a medication should be used.
+A typical prescription label may include:"
+list={[
+    "● Patient's name",
+    "● Medication name",
+    "● Strength",
+    "● Dosage",
+    "● Route",
+    "● Frequency",
+    "● Quantity",
+    "● Refills",
+    "● Special instructions",
+    "● Warnings or precautions",
+]}
+/>
+
+<Title
+title="The interpreter must be able to recognize these terms and accurately convey their meaning."
+/>
+
+<Paragraph
+h1=""
+/>
+
+<Title
+title="2. Common Medication Terminology"
+dictionary={[
+    {
+    element:"Medication",
+    explanation:"A drug used to prevent, diagnose, treat, or manage a medical condition.",
+    },
+    {
+    element:"Prescription",
+    explanation:"An authorization from a healthcare provider for a patient to receive a medication.",
+    },
+    {
+    element:"Dose",
+    explanation:"The specific amount of medication taken at one time.",
+    extra:"Example: 'Take one 500 mg tablet.'",
+    },
+    {
+    element:"Dosage",
+    explanation:"The prescribed amount and schedule for taking a medication.",
+    },
+    {
+    element:"Strength",
+    explanation:"The amount of active medication contained in a specific unit.",
+    extra:"Example: 'Amoxicillin 500 mg.'",
+    },
+    {
+    element:"Route",
+    explanation:"The way a medication enters the body.",
+    extra:"Common routes include: Oral (PO) - Intravenous (IV) - Intramuscular (IM) - Subcutaneous (subQ/SQ) - Topical - Inhaled - Rectal - Sublingual",
+    },
+    {
+    element:"Frequency",
+    explanation:"How often the medication should be taken.",
+    extra:"Example: Once daily - Twice daily - Three times daily - Every 4 hours - Every 8 hours - As needed",
+    },
+    {
+    element:"PRN",
+    explanation:"Means 'as needed.'",
+    extra:"Example: 'Take 1 tablet every 6 hours PRN for pain.'",
+    }, 
+    {
+    element:"Refill",
+    explanation:"An additional supply of medication authorized by the healthcare provider.",
+    },
+    {
+    element:"Contraindication",
+    explanation:"A condition or circumstance in which a medication or treatment should not be used because it may be harmful.",
+    },
+    {
+    element:"Side effect",
+    explanation:"An unintended effect that may occur when taking a medication.",
+    },
+    {
+    element:"Adverse reaction",
+    explanation:"An unwanted or harmful response to a medication.",
+    },
+    ]}
+/>
+
+<Paragraph
+h1=""
+/>
+
+<Title
+title="3. Common Medication Instructions"
+p="Medical interpreters should recognize phrases such as:"
+list={[
+    "● Take one tablet by mouth",
+    "● Take twice daily",
+    "● Take every 8 hours",
+    "● Take with food",
+    "● Take on an empty stomach",
+    "● Take at bedtime",
+    "● Take as needed for pain",
+    "● Do not exceed the recommended dose",
+    "● Do not stop taking this medication abruptly",
+    "● Complete the full course of antibiotics",
+    "● Shake well before use",
+    "● Apply a thin layer to the affected area",
+    "● Store at room temperature"
+]}
+/>
+
+<Paragraph
+h1=""
+/>
+
+<Title
+title="4. Common Medication Abbreviations"
+/>
+
+<Paragraph
+grid={[
+    {element:"Abbreviation", explanation:"Meaning", col:2},
+    {element:"PO", explanation:"By mouth / orally", col:2},
+    {element:"IV", explanation:"Intravenous", col:2},
+    {element:"IM", explanation:"Intramuscular", col:2},
+    {element:"SQ/SubQ", explanation:"Subcutaneuos", col:2},
+    {element:"PRN", explanation:"As needed", col:2},
+    {element:"BID", explanation:"Twice daily", col:2},
+    {element:"TID", explanation:"Three times daily", col:2},
+    {element:"QID", explanation:"Four times daily", col:2},
+    {element:"q4h", explanation:"Every 4 hours", col:2},
+    {element:"q6h", explanation:"Every 6 hours", col:2},
+    {element:"q8h", explanation:"Every 8 hours", col:2},
+    {element:"HS", explanation:"At bedtime", col:2},
+    {element:"NPO", explanation:"Nothing by mouth", col:2},
+    {element:"OTC", explanation:"Over the counter", col:2},
+    ]}
+/>
+
+<Presentation
+p="Important Note"
+/>
+<Title
+p="Abbreviations can create safety risks because some abbreviations may be misunderstood or misread. In spoken interpretation, it is generally more important to communicate the meaning of the instruction than to reproduce the abbreviation itself."
+dictionary={[
+    {element: "For example", explanation: "'Take this medication BID.'"},
+    {element: "The patient should understand", explanation: "'Take this medication twice a day.'"}
+]}
+/>
+
+<Paragraph
+h1=""
+/>
+
+<Title
+title="5. Practice: Read the Medication Label"
+dictionary={[
+    {element:"Medication",
+    explanation:"Ibuprofen 600 mg tablets"},
+    {element:"Directions", explanation:"Take one tablet by mouth every 6 hours as needed for pain. Take with food. Do not exceed four tablets in 24 hours."},
+    {element:"Identify"},
+    {element:"1", explanation:"What is the medication strength?"},
+    {element:"2", explanation:"What is the route?"},
+    {element:"3", explanation:"How frequently can the patient take it?"},
+    {element:"4", explanation:"When should the patient take it?"},
+    {element:"5", explanation:"What is the maximum number of tablets in 24 hours?"},
+]}
+/>
+
+<Paragraph
+cursive="Interpreter Takeaway"
+p="When interpreting discharge instructions, pay particular attention to:"
+h1="Medication → Dose → Route → Frequency → Duration → Special instructions → Maximum dose → Warnings"
+/>
+<Title
+p="Never assume that a patient understands a medication instruction simply because the words appear simple."
+/>

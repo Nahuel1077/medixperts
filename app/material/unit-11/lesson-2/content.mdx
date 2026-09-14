@@ -1,0 +1,64 @@
+import Presentation from '../../../components/Presentation';
+import Paragraph from '../../../components/Paragraph';
+import Title from '../../../components/Title';
+
+
+<Presentation
+description="Before signing an agreement with an LSP or a hospital, you must understand the legal and operational structure of the contract. This dictates how you are taxed, your schedule flexibility, and your legal liabilities."
+/>
+
+<Paragraph
+title="1. The Legal Classification (US Context & Global Equivalents)"
+/>
+
+<Title
+title="W-2 Employee Status:"
+list={[
+    "● You are an official employee of the company.",
+    "● The company is legally required to withhold income taxes, social security, and medicare from your paycheck.",
+    "● You are often eligible for benefits (health insurance, paid time off, etc) if working full-time or consistent part-time hours.",
+]}
+/>
+
+<Paragraph
+h1=""
+/>
+
+<Title
+title="1099 Independent Contractor Status:"
+list={[
+    "● You are a self-employed business entity.",
+    "● The agency pays you gross compensation; no taxes are withheld. You are solely responsible for calculating and paying your own self-employment taxes.",
+    "● You have no access to company benefits, but you possess far greater freedom to set your own hours and work for competing agencies.",
+]}
+
+/>
+<Paragraph
+h1=""
+/>
+
+<Paragraph
+title="2. Operational Scheduling Structures"
+/>
+<Title
+dictionary={[
+    {element:"Dedicated Shift Contracts", explanation:"You agree to log into the platform during set hours (e.g., Monday through Friday, 08:00 to 16:00). You are paid a flat hourly rate regardless of call volume."},
+    {element:"Per-Diem / On-Call Contracts", explanation:"You are paid only when you are actively logged in during high-volume periods, or you are called in on-site as needed."},
+    {element:"On-Demand Per-Minute Contracts", explanation:"Highly common for freelancers. There is no set schedule. You log in whenever you want, and you are compensated strictly for the exact minutes you spend on live calls."}
+]}
+/>
+
+<Paragraph
+h1=""
+/>
+
+<Paragraph
+title="3. Common Legal Clauses to Watch For"
+/>
+<Title
+dictionary={[
+    {element:"Non-Disclosure Agreements (NDAs)", explanation:"Standard and mandatory. You are legally bound to protect patient confidentiality (HIPAA)."},
+    {element:"Per-Diem / On-Call Contracts", explanation:"You are paid only when you are actively logged in during high-volume periods, or you are called in on-site as needed."},
+    {element:"Non-Compete Clauses (NCCs)", explanation:"Some agencies try to restrict you from working for competing LSPs. Caution: Read these carefully. In many jurisdictions, overly broad non-competes are legally unenforceable, but they can still complicate your freelance career."}
+]}
+/>

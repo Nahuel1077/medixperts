@@ -1,0 +1,45 @@
+import Presentation from '../../../components/Presentation';
+import Paragraph from '../../../components/Paragraph';
+import Image from "next/image";
+
+
+<Presentation
+description="In remote medical interpreting, your internet and hardware stability is a critical clinical factor. Language Service Providers (LSPs) monitor your 'technical reliability' metrics with the same scrutiny as your translation accuracy. A dropped connection during a high-stakes emergency room call doesn't just lower your performance scorecard—it leaves physicians and patients stranded in moments of crisis.
+Incorporate these technical habits into your daily professional routine to ensure constant 100% up-time."
+/>
+
+<Presentation
+title="1. The Pre-Shift Tech Ritual"
+p="Perform this routine 30 minutes before logging in for your shift."
+list={[
+    "• Complete System Restart: A daily reboot is mandatory. It clears volatile memory (RAM) and shuts down hidden background processes that accumulate during off-hours, ensuring maximum processing speeds for live streaming.",
+    "• System Speed Test: Run an independent network test via Ookla Speedtest to verify your bandwidth. Ensure you meet your LSP’s baseline: at least 20 Mbps download, 10 Mbps upload, a ping below 20 ms, and jitter under 5 ms. Keep a simple screenshot log of your daily results in case of connection disputes with your ISP.",
+    "• Browser Cache Clearance: Overloaded browser files can cause frame drops in Video Remote Interpreting (VRI) software. Clear your browser's cookies and temporary files weekly. Use Google's Chrome Cache Guide to clean your browser without deleting your saved passwords.",
+    "• App Housekeeping: Open your system task manager and completely close personal apps (such as Spotify, Discord, Steam, or cloud sync drives like OneDrive and Dropbox) that consume background processing power and bandwidth.",
+]}
+/>
+
+<Presentation
+title="2. Power and Connection Backups"
+p="Technical emergencies will happen. Your career depends on how fast you can recover."
+list={[
+    "• The Uninterruptible Power Supply (UPS): Power grid failures are unpredictable. Invest in a desktop UPS battery backup surge protector. If your home loses power, a high-quality UPS will keep your computer, fiber terminal (ONT), and router running for an extra 15 to 30 minutes. This gives you the critical window needed to explain the situation to the clinical staff, safely disconnect from your live call, and notify operations.",
+    "• Backup Connection (Hotspot Protocol): Set up your mobile phone’s LTE or 5G hotspot as a secondary gateway. If your landline broadband drops, you must have a pre-configured protocol to connect your PC to your hotspot within 60 seconds.",
+]}
+link="https://support.microsoft.com/en-us/windows/use-your-windows-pc-as-a-mobile-hotspot-c89b0faf-5970-4b46-22a9-d897918c50e2"
+linkTitle="Review Microsoft's Mobile Hotspot Guide to set this up as a secure, pre-configured backup network."
+/>
+
+
+<Presentation
+title="3. Software Optimization"
+description="Configure your operating system to prevent mid-call technical disruptions. You must secure your environment using three main protocols:"
+p="• Disable Automatic Updates: An unexpected system reboot during a trauma call is a critical operational error. Set your operating system's 'Active Hour' to prevent updates   during your shift."
+link="https://support.microsoft.com/en-us/windows/manage-updates-in-windows-643c39fb-f895-132d-90cf-2367cc0d61d7"
+linkTitle="Check out Microsoft's Windows Update Management Guide to learn how to pause and schedule installations safely."
+/>
+<Paragraph
+p="• Antivirus & Firewall Configuration: Secure VPNs and Web Real-Time Communication (WebRTC) streams can sometimes be flagged and throttled by aggressive firewall software. Open your security center and add your LSP's platform URL and secure client application as 'Safe Exceptions.' This prevents your firewall from dropping incoming audio packets, ensuring crystal-clear, zero-latency communication."
+/>
+
+    

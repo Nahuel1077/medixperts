@@ -1,128 +1,268 @@
-'use client';
+'use client'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import Image from 'next/image';
 
 export default function AdminPage() {
-  const [isAdmin, setIsAdmin] = useState(null);
-  const router = useRouter();
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState(null)
+  const [users, setUsers] = useState([])
+  const [membership, setMembership] = useState([])
+  const [isAdmin, setIsAdmin] = useState(null)
+  const router = useRouter()
+  const [days, setDays] = useState({})
 
-    useEffect(() => {
+ 
+  useEffect(() => {
+    const getUser = async () => {
+      const token = localStorage.getItem('token')
+
+      const res = await fetch('http://localhost:3001/api/auth/me', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const data = await res.json()
+
+      if (!data.user) {
+        router.push('/log-in')
+        return
+      }
+
+      setUser(data.user)
+    }
+
+    getUser()
+  }, [])
+
+ 
+  useEffect(() => {
+    if (!user) return
+
     const checkAdmin = async () => {
-    const { data: userData } = await supabase.auth.getUser();
+      const token = localStorage.getItem('token')
 
-    if (!userData.user) {
-      router.push('/login');
-      return;
-    }
+      const res = await fetch('http://localhost:3001/api/auth/admin', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
 
-    const { data: profile, error } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', userData.user.id)
-      .single();
+      const data = await res.json()
 
-    console.log(profile, error);
+      if (!data.isAdmin) {
+        router.push('/')
+        console.log(data)
+        return
+      }
 
-    const getUsers = async () => {
-    const { data, error } = await supabase
-    .from('profiles')
-    .select('*');
+      setIsAdmin(true)
+
+
+      const getUsers = async () => {
+        const token = localStorage.getItem('token')
     
-      console.log("DATA:", data);
-  console.log("ERROR:", error);
-
-  setUsers(data || []);
-  };
-
-    if (!profile) {
-      router.push('/');
-      return;
+        const res = await fetch('http://localhost:3001/api/auth/users', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+    
+        const data = await res.json()
+        console.log(data)
+        setUsers(data.user)
+      }
+      getUsers()
+      
+       const getMembership = async () => {
+         const token = localStorage.getItem('token')
+         const res = await fetch('http://localhost:3001/api/admin/memberships', {
+           headers: {
+             Authorization: `Bearer ${token}`,
+           },
+           })
+         const data = await res.json()
+         setMembership(data.memberships || []);
+       }
+       getMembership()
     }
+    checkAdmin()
+  }, [user])
 
-    if (profile.role !== 'admin') {
-      router.push('/');
-    } else {
-      setIsAdmin(true);
-      getUsers(); 
-    }
-  };
-
-  checkAdmin();
-  
-  
-}, []);  
-
-  if (isAdmin === null) return <p>Checking permissions...</p>;
   
   const getUsers = async () => {
-    const { data, error } = await supabase
-    .from('profiles')
-    .select('*');
-    
-    if (!error) setUsers(data);
-  };
-  
+    const token = localStorage.getItem('token')
+    const res = await fetch('http://localhost:3001/api/auth/users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      })
+    const data = await res.json()
+    setUsers(data.user)
+  }
 
+  const getMembership = async () => {
+         const token = localStorage.getItem('token')
+         const res = await fetch('http://localhost:3001/api/admin/memberships', {
+           headers: {
+             Authorization: `Bearer ${token}`,
+           },
+           })
+         const data = await res.json()
+         setMembership(data.memberships || []);
+       }
+
+
+  // 🗑️ 4. Acciones
   const deleteUser = async (id) => {
-  await supabase.from('profiles').delete().eq('id', id);
-  getUsers();
-  };
+  const token = localStorage.getItem('token')
 
-  const toggleUser = async (id, currentState) => {
-  await supabase
-    .from('profiles')
-    .update({ active: !currentState })
-    .eq('id', id);
+  try {
+    const res = await fetch(`http://localhost:3001/api/admin/users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    if (!confirm('¿Seguro que querés eliminar este usuario?')) return
 
-  getUsers();
-  };
+    const data = await res.json()
+
+    if (!res.ok) {
+      console.error('Error:', data.error)
+      return
+    }
+
+    // refrescar lista
+    getUsers()
+
+  } catch (err) {
+    console.error('Network error:', err)
+  }
+}
+
+  const toggleUser = async (id) => {
+  const token = localStorage.getItem('token')
+
+  try {
+    const res = await fetch(
+      `http://localhost:3001/api/admin/toggle/${id}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      console.error('Error:', data.error)
+      return
+    }
+
+    await getUsers()
+
+  } catch (err) {
+    console.error('Network error:', err)
+  }
+}
 
   const extendMembership = async (id, days) => {
-  const newDate = new Date();
-  newDate.setDate(newDate.getDate() + days);
+  const token = localStorage.getItem('token')
+    
+    try {
+    const res = await fetch(`http://localhost:3001/api/admin/extend/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ days: days })
+    });
 
-  await supabase
-    .from('profiles')
-    .update({ membership_end: newDate })
-    .eq('id', id);
+    if (res.ok) {
+      getMembership();
+      getUsers(); 
+      setDays((prev) => ({
+        ...prev,
+        [id]: '' 
+      }));
 
-  getUsers();
-  };
+      alert(`Membresía extendida!`);
+    }
+  } catch (err) {
+    console.error('Error al extender membresía:', err);
+  }
+  }
+
+  // ⏳ loading
+  if (isAdmin === null) return <p>Checking permissions...</p>
+  if (!isAdmin) return <p>No autorizado</p>
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-100">
-      <h1 className="text-3xl font-bold mb-4">Admin Page</h1>
+    <div className="flex flex-col items-center min-h-screen">
+      <Image src="/img/halloffame.png" alt="Hall of Fame" width={2000} height={1125} className="w-full h-dvhs object-cover fixed -z-10 brightness-50" />
+      <h1 className="text-3xl font-bold mb-4 text-white">Admin Page</h1>
+
       {isAdmin ? (
-        <div className='flex flex-col items-center gap-6'>
-        <p className="text-green-500">You are an admin.</p>
-         {users.map((user) => (
-      <div key={user.id} className="w-full border p-2 mb-2 gap-2 flex flex-col">
-        <p>{user.id}</p>
-        <p>{user.role}</p>
-        <p>{user.full_name}</p>
-        <p>{user.phone}</p>
-        <div className='flex flex-row justify-content gap-2'>
-        <button className='button' onClick={() => toggleUser(user.id, user.active)}>
-          Toggle
-        </button>
+        <div className="flex flex-col gap-4 w-full max-w-2xl">
+          {users.map((u) => {
+            const userMembership = membership.find((m) => m.id === u.id);
+            return(
+            <div key={u.id} className="border p-4 rounded-2xl bg-white">
+              <p><b>{u.full_name}</b></p>
+              <p>{u.email}</p>
+              <p>Role: {u.role}</p>
+              {userMembership ? (
+                <div className="bg-blue-50 p-2 my-2 rounded">
+                  <p className="text-sm">
+                    Estado: {
+                      userMembership.status
+                        ? 'Activa'
+                        : 'Pendiente de verificación'
+                    }
+                  </p>
+                  <p className="text-sm">Vence: {userMembership.until}</p>
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500">Sin membresía activa</p>
+              )}
+              <div className="flex gap-2 mt-2">
+                
+                <button
+                    onClick={() => toggleUser(u.id)}
+                    className="border-[1px] rounded-md p-1 shadow-[0px_0px_1px_1px] hover:shadow-none"
+                  >
+                    {userMembership?.status ? 'Disable' : 'Enable'}
+                  </button>
+                <input type='number' alt='days' placeholder='Days' id='days' name='days' className='w-[60px] border-2 rounded-md'  value={days[u.id] || ''}
+                  onChange={(e) =>
+                    setDays({
+                      ...days,
+                      [u.id]: Number(e.target.value)
+                    })
+                } ></input>
 
-        <button className='button' onClick={() => extendMembership(user.id, 30)}>
-          +30 days
-        </button>
+                <button onClick={() => extendMembership(u.id, days[u.id])} className='border-[1px] rounded-md p-1 shadow-[0px_0px_1px_1px] hover:shadow-none'>
+                  Extend
+                </button>
 
-        <button className='button' onClick={() => deleteUser(user.id)}>
-          Delete
-        </button>
-        </div>
-      </div>
-    ))}
+                <button onClick={() => extendMembership(u.id, 30)} className='border-[1px] rounded-md p-1 shadow-[0px_0px_1px_1px] hover:shadow-none'>
+                  +30 days
+                </button>
+
+                <button onClick={() => deleteUser(u.id)} className='border-[1px] rounded-md p-1 shadow-[0px_0px_1px_1px] hover:shadow-none'>
+                  Delete
+                </button>
+              </div>
+            </div>)
+        })}
         </div>
       ) : (
-        <p className="text-red-500">You are not an admin.</p>
+        <p>No sos admin</p>
       )}
-
     </div>
-  );
+  )
 }

@@ -35,3 +35,136 @@ body {
   box-shadow: black 0px 1px 0px 1px;;
 }
 
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.scrollbar-none{
+  scrollbar-width: none;
+}
+
+.tableBorder{
+  border: 1px solid #3B82F6 ;
+}
+
+/* PAGE FLIP - CSS MÍNIMO */
+.flip-book {
+  width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.page {
+  width: 100%;
+  height: 650px;
+  background: #fffaf0;
+  border: 1px solid #d4b38a;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.page-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.page-text {
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-y: auto;
+}
+
+/* Portadas duras */
+.page[data-density="hard"] {
+  background: #f5e8c7;
+  border: 2px solid #8d6e4f;
+}
+/* Portada superior */
+.page-cover-top {
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
+}
+
+/* Portada inferior */
+.page-cover-bottom {
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
+}
+
+&.--left { 
+  border-right: 0;
+  box-shadow: inset -7px 0 30px -7px rgba(0, 0, 0, 0.4);
+}
+
+&.--right { 
+  border-left: 0;
+  box-shadow: inset 7px 0 30px -7px rgba(0, 0, 0, 0.4);
+}
+.page-footer {
+  text-align: right;
+}
+
+
+&.hard { 
+  background-color: hsl(35, 50, 90);
+  border: solid 1px hsl(35, 20, 50);
+}
+
+&.page-cover {
+  background-color: hsl(35, 45, 80);
+  color:  hsl(35, 35, 35);
+  border: solid 1px hsl(35, 20, 50);
+}
+h2 {
+  text-align: center;
+  font-size: 210%;
+}
+
+&.page-cover-top {
+  box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), -2px 0 5px 2px rgba(0, 0, 0, 0.4);
+}
+
+&.page-cover-bottom {
+  box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), 10px 0 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+.flip-book .page,
+.flip-book .page-content {
+  transition: none !important;
+}
+
+.flip-book .page:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  z-index: auto !important;
+}
+
+/* Quitar efecto de "levantar esquina" al hover */
+.stf__block-hover, 
+.stf__corner {
+  display: none !important;
+}
+
+/* Reducir sombras agresivas */
+.flip-book {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}

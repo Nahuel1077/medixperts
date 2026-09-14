@@ -1,11 +1,9 @@
 'use client'
-import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignUp() {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,37 +15,32 @@ export default function SignUp() {
     setLoading(true);
     setErrorMsg("");
 
-    const { data, error } = await supabase.auth.signUp({
-      email: email.trim(),
-      password: password.trim(),
-    });
+    try{
+      const res = await fetch('http://localhost:3001/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({
+          email: email.trim(),
+          password: password.trim(),
+        }),
+      });
+      const data = await res.json();
 
-    if (error) {
-      setErrorMsg(error.message);
-      setLoading(false);
-      return;
+      if (!res.ok){
+        setErrorMsg(data.error || "Error creating account");
+        setLoading(false);
+        return;
+      }
+      alert("Check your email to confirm your account");
+
+      router.push("/log-in");
+    } catch (err) {
+      setErrorMsg("Network error");
     }
-
-   if (data.user) {
-    const { error: insertError } = await supabase
-      .from('profiles')
-      .insert([
-        {
-          id: data.user.id,
-          role: 'user',
-          full_name: '',
-          phone: ''
-        }
-      ]);
-
-    if (insertError) {
-      console.log(insertError);
-    }
-    router.push("/log-in");
-
     setLoading(false);
-    return;
-  }};
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
