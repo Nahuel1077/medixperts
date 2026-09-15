@@ -22,10 +22,10 @@ export default function HallOfFame() {
             key: 1,
         },
         {
-            name: "John Doe",
-            date: "2026-06-10",
-            description: "John achieved an impressive 98% accuracy in the final test, showcasing his dedication and skill in mastering the material. His consistent performance throughout the course has been exemplary, making him a standout student in our program.",
-            image: "/img/x.jpg",
+            name: "You Could Be Here",
+            date: "2026-09-15",
+            description: "You demonstrated strong interpreting skills throughout the course, earning your place in the Hall of Fame. Your commitment to learning and consistently high quiz scores are also achievements worth highlighting.",
+            image: "/img/hall-of-fame-you.png",
             key: 2,     
         },
         {

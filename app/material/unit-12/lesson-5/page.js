@@ -21,7 +21,7 @@ const lessonData = {
 
 function FinalButton() {
   const { answers } = useQuizContext();
-  const { saveAttempt, loadingQuiz } = useQuizAttempt();
+  const { saveAttempt, loadingQuiz, error, success } = useQuizAttempt();
 
   const handleFinish = async () => {
     const correctCount = Object.values(answers).filter(Boolean).length;
@@ -35,13 +35,29 @@ function FinalButton() {
   };
 
   return (
-    <button 
-      onClick={handleFinish} 
-      disabled={loadingQuiz}
-      className="bg-green-900 font-bold text-white px-6 py-3 rounded-xl mt-6 hover:bg-zinc-800 transition-all"
-    >
-      {loadingQuiz ? 'Guardando...' : 'Finalizar Quiz'}
-    </button>
+    <div className="flex flex-col items-center gap-4 mt-6">
+
+      <button 
+        onClick={handleFinish} 
+        disabled={loadingQuiz}
+        className="bg-green-900 font-bold text-white px-6 py-3 rounded-xl hover:bg-zinc-800 transition-all"
+      >
+        {loadingQuiz ? 'Guardando...' : 'Finalizar Quiz'}
+      </button>
+
+      {error && (
+        <p className="text-red-500 text-center">
+          {error}
+        </p>
+      )}
+
+      {success && (
+        <p className="text-green-500 text-center">
+          Intento registrado correctamente.
+        </p>
+      )}
+
+    </div>
   );
 }
 

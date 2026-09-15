@@ -7,16 +7,6 @@ import { useAuth } from "../../hooks/useAuth";
 const lessonData = {
   id: "unit3-title",
   unitTitle: "UNIT 3: Core Interpreting Skills 🧠",
-  content: `
-    <h2>Introduction</h2>
-    <p>In this unit you'll learn...</p>
-  `,
-  videoUrl: "https://youtube.com/...",
-  resources: [
-    { name: "Lista de agencias", url: "/" },
-    { name: "Plantilla de CV", url: "/" }
-  ],
-  duration: "45 min",
   nextLesson: "/material/unit-3/lesson-1",
   prevLesson: "/material",
   restart: "/material/unit-3",
